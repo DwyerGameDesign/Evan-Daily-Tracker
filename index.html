@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evan's Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Evan's Habit Tracker 🎮</h1>
+            <div class="date-display" id="currentDate"></div>
+        </header>
+
+        <!-- Tab Navigation and XP Display Container -->
+        <div class="tabs-xp-container">
+            <!-- Tab Navigation -->
+            <nav class="tab-navigation">
+                <button class="tab-btn active" data-tab="today">Today</button>
+                <button class="tab-btn" data-tab="history">History</button>
+                <button class="tab-btn" data-tab="badges">Badges</button>
+                <button class="tab-btn" data-tab="progress">Progress</button>
+                <button class="tab-btn" data-tab="account">Account</button>
+            </nav>
+            
+            <!-- XP Display -->
+            <div class="xp-display" id="xpDisplay">
+                <div class="level-info">
+                    <span class="level-text">Level <span id="currentLevel">1</span></span>
+                    <span class="level-title" id="levelTitle">Beginner</span>
+                </div>
+                <div class="xp-bar">
+                    <div class="xp-fill" id="xpFill"></div>
+                    <div class="xp-text">
+                        <span id="currentXP">0</span> / <span id="nextLevelXP">100</span> XP
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <!-- Today Tab -->
+            <div class="tab-content active" id="today-tab">
+                <!-- Mood Tracker Section -->
+                <section class="mood-section">
+                    <div class="mood-header">
+                        <h2>How are you feeling today?</h2>
+                        <div class="mood-selector">
+                            <button class="mood-btn" data-mood="😄">😄</button>
+                            <button class="mood-btn" data-mood="😊">😊</button>
+                            <button class="mood-btn" data-mood="😐">😐</button>
+                            <button class="mood-btn" data-mood="😔">😔</button>
+                            <button class="mood-btn" data-mood="😴">😴</button>
+                            <button class="mood-btn" data-mood="🤗">🤗</button>
+                            <button class="mood-btn" data-mood="😌">😌</button>
+                            <button class="mood-btn" data-mood="🤔">🤔</button>
+                            <button class="mood-btn" data-mood="😤">😤</button>
+                            <button class="mood-btn" data-mood="😎">😎</button>
+                            <button class="mood-btn" data-mood="🥳">🥳</button>
+                            <button class="mood-btn" data-mood="😍">😍</button>
+                            <button class="mood-btn" data-mood="🤩">🤩</button>
+                            <button class="mood-btn" data-mood="😇">😇</button>
+                            <button class="mood-btn" data-mood="🤠">🤠</button>
+                        </div>
+                    </div>
+                    <input type="text" id="moodText" placeholder="Tell us more about your day! (optional)" maxlength="100">
+                </section>
+
+                <!-- Daily Goals Section -->
+                <section class="goals-section">
+                    <h2>Daily Goals</h2>
+                    <div class="goals-grid">
+
+                        <div class="goal-card" data-goal="reading">
+                            <div class="goal-icon">📚</div>
+                            <div class="goal-info">
+                                <h3>Reading</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-target="30"></div>
+                                </div>
+                                <div class="progress-text">0 / 30 minutes</div>
+                                <div class="goal-controls">
+                                    <button class="btn-minus">-</button>
+                                    <button class="btn-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="goal-card" data-goal="water">
+                            <div class="goal-icon">💧</div>
+                            <div class="goal-info">
+                                <h3>Drink Water</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-target="8"></div>
+                                </div>
+                                <div class="progress-text">0 / 8 cups</div>
+                                <div class="goal-controls">
+                                    <button class="btn-minus">-</button>
+                                    <button class="btn-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="goal-card" data-goal="stretch">
+                            <div class="goal-icon">🧘</div>
+                            <div class="goal-info">
+                                <h3>Stretch</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-target="15"></div>
+                                </div>
+                                <div class="progress-text">0 / 15 minutes</div>
+                                <div class="goal-controls">
+                                    <button class="btn-minus">-</button>
+                                    <button class="btn-plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="goal-card" data-goal="duolingo">
+                            <div class="goal-icon">🦉</div>
+                            <div class="goal-info">
+                                <h3>Duolingo</h3>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="duolingo-check">
+                                    <label for="duolingo-check">Completed today!</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Daily Missions Section -->
+                <section class="missions-section">
+                    <h2>Today's Special Missions! 🎯</h2>
+                    <div class="missions-grid" id="missionsGrid">
+                        <!-- Missions will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Weekly View Section -->
+                <section class="weekly-section">
+                    <h2>This Week's Progress</h2>
+                    <div class="week-view" id="weekView">
+                        <!-- Week progress will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- History Tab -->
+            <div class="tab-content" id="history-tab">
+                <section class="history-section">
+                    <h2>Progress History</h2>
+                    <div class="history-controls">
+                        <button id="export-history" class="history-btn">📤 Export Data</button>
+                        <button id="import-history" class="history-btn">📥 Import Data</button>
+                    </div>
+                    <div class="history-table-container">
+                        <table class="history-table" id="historyTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Goals</th>
+                                    <th>Missions</th>
+                                    <th>Mood</th>
+                                    <th>Notes</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <!-- History data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Badges Tab -->
+            <div class="tab-content" id="badges-tab">
+                <section class="badges-section">
+                    <h2>Badge Collection 🏆</h2>
+                    
+                    <div class="badges-grid" id="allBadgesGrid">
+                        <!-- All possible badges will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Progress Tab -->
+            <div class="tab-content" id="progress-tab">
+                <section class="achievements-section">
+                    <h2>Level Up Progress 🌟</h2>
+                    <div class="achievements-list" id="achievementsList">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Account Tab -->
+            <div class="tab-content" id="account-tab">
+                <section class="account-section">
+                    <h2>Account & Settings</h2>
+                    <div class="account-stats" id="accountStats">
+                        <!-- Statistics will be populated by JavaScript -->
+                    </div>
+                    <div class="stats-display" id="stats-display">
+                        <!-- Detailed statistics will be populated by JavaScript -->
+                    </div>
+                    <div class="account-actions">
+                        <button id="export-data-btn" class="account-btn">📤 Export All Data</button>
+                        <button id="import-data-btn" class="account-btn">📥 Import Data</button>
+                        <button id="reset-data-btn" class="account-btn danger">🗑️ Reset All Data</button>
+                    </div>
+                    <div class="account-help">
+                        <h3>Help & Tips</h3>
+                        <div class="help-content">
+                            <p><strong>Keyboard Shortcuts:</strong></p>
+                            <ul>
+                                <li><strong>1</strong> - Add water</li>
+                                <li><strong>2</strong> - Add stretch time</li>
+                                <li><strong>3</strong> - Toggle Duolingo</li>
+                                <li><strong>4</strong> - Add reading time</li>
+                                <li><strong>H</strong> - Show help</li>
+                                <li><strong>S</strong> - Open settings</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Confetti Animation Container -->
+        <div id="confetti-container"></div>
+
+        <!-- Achievement/Badge Notifications Container -->
+        <div id="notifications-container"></div>
+
+        <!-- Celebration Modal -->
+        <div id="celebration-modal" class="modal">
+            <div class="modal-content">
+                <h2>🎉 Awesome Job! 🎉</h2>
+                <p id="celebration-text"></p>
+                <button id="close-modal">Keep Going!</button>
+            </div>
+        </div>
+
+        <!-- Info Modal -->
+        <div id="info-modal" class="modal">
+            <div class="modal-content">
+                <h2 id="info-modal-title"></h2>
+                <div id="info-modal-content"></div>
+                <button id="close-info-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="data.js"></script>
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
